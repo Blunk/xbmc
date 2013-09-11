@@ -386,6 +386,7 @@
     <ClCompile Include="..\..\xbmc\filesystem\MultiPathFile.cpp" />
     <ClCompile Include="..\..\xbmc\filesystem\MusicDatabaseDirectory.cpp" />
     <ClCompile Include="..\..\xbmc\filesystem\MusicDatabaseDirectory\DirectoryNodeGrouped.cpp" />
+    <ClCompile Include="..\..\xbmc\games\tags\GameInfoTag.cpp" />
     <ClCompile Include="..\..\xbmc\input\joysticks\DefaultJoystick.cpp" />
     <ClCompile Include="..\..\xbmc\games\GameSettings.cpp" />
     <ClCompile Include="..\..\xbmc\input\joysticks\generic\ButtonMapping.cpp" />
@@ -1051,6 +1052,7 @@
     <ClInclude Include="..\..\xbmc\filesystem\DAVFile.h" />
     <ClInclude Include="..\..\xbmc\filesystem\ImageFile.h" />
     <ClInclude Include="..\..\xbmc\filesystem\MusicDatabaseDirectory\DirectoryNodeGrouped.h" />
+    <ClInclude Include="..\..\xbmc\games\tags\GameInfoTag.h" />
     <ClInclude Include="..\..\xbmc\input\joysticks\DefaultJoystick.h" />
     <ClInclude Include="..\..\xbmc\games\GameSettings.h" />
     <ClInclude Include="..\..\xbmc\input\joysticks\generic\ButtonMapping.h" />
