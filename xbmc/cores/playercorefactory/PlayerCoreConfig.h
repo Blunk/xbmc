@@ -24,6 +24,7 @@
 #include "PlayerCoreFactory.h"
 #include "cores/VideoPlayer/VideoPlayer.h"
 #include "cores/paplayer/PAPlayer.h"
+#include "cores/RetroPlayer/RetroPlayer.h"
 #include "cores/ExternalPlayer/ExternalPlayer.h"
 #ifdef HAS_UPNP
 #include "network/upnp/UPnPPlayer.h"
@@ -98,6 +99,7 @@ public:
       pPlayer = new CExternalPlayer(callback);
     }
 
+      case EPC_RETROPLAYER: pPlayer = new CRetroPlayer(callback); break;
 #if defined(HAS_UPNP)
     else if (m_type.compare("remote") == 0)
     {

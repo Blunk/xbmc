@@ -217,6 +217,11 @@ bool CApplicationPlayer::IsPlayingRDS() const
   return (IsPlaying() && HasRDS());
 }
 
+bool CApplicationPlayer::IsPlayingGame() const
+{
+  return (IsPlaying() && m_eCurrentPlayer == EPC_RETROPLAYER);
+}
+
 void CApplicationPlayer::Pause()
 {
   std::shared_ptr<IPlayer> player = GetInternal();

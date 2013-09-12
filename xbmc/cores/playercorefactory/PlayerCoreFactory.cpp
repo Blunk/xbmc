@@ -116,9 +116,9 @@ void CPlayerCoreFactory::GetPlayers(const CFileItem& item, std::vector<std::stri
 
   // Process defaults
 
-  // Set video default player. Check whether it's video first (overrule audio check)
-  // Also push these players in case it is NOT audio either
-  if (item.IsVideo() || !item.IsAudio())
+  // Set video default player. Check whether it's video first (overrule audio and
+  // game check). Also push these players in case it is NOT audio or game either.
+  if (item.IsVideo() || (!item.IsAudio() && !item.IsGame()))
   {
     int idx = GetPlayerIndex("videodefaultplayer");
     if (idx > -1)

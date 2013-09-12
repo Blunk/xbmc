@@ -418,6 +418,9 @@
     <Filter Include="games\tags">
       <UniqueIdentifier>{35503fd5-67af-4b10-ae6e-aee24c3f4db7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="cores\RetroPlayer">
+      <UniqueIdentifier>{357316ff-2030-4db8-bd46-a1b912e7cb0b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\xbmc\win32\pch.cpp">
@@ -3292,7 +3295,7 @@
     <ClCompile Include="..\..\xbmc\threads\test\TestHelpers.h">
       <Filter>test\threads</Filter>
     </ClCompile>
-     <ClCompile Include="..\..\xbmc\addons\AddonBuilder.cpp">
+    <ClCompile Include="..\..\xbmc\addons\AddonBuilder.cpp">
       <Filter>addons</Filter>
     </ClCompile>
     <ClCompile Include="..\..\xbmc\addons\test\TestAddonBuilder.cpp">
@@ -3414,6 +3417,18 @@
     </ClCompile>
     <ClCompile Include="..\..\xbmc\games\tags\GameInfoTag.cpp">
       <Filter>games\tags</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\xbmc\cores\RetroPlayer\RetroPlayer.cpp">
+      <Filter>cores\RetroPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\xbmc\cores\RetroPlayer\RetroPlayerAudio.cpp">
+      <Filter>cores\RetroPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\xbmc\cores\RetroPlayer\RetroPlayerDialogs.cpp">
+      <Filter>cores\RetroPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\xbmc\cores\RetroPlayer\RetroPlayerVideo.cpp">
+      <Filter>cores\RetroPlayer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -6586,6 +6601,18 @@
     </ClInclude>
     <ClInclude Include="..\..\xbmc\games\tags\GameInfoTag.h">
       <Filter>games\tags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\xbmc\cores\RetroPlayer\RetroPlayer.h">
+      <Filter>cores\RetroPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\xbmc\cores\RetroPlayer\RetroPlayerAudio.h">
+      <Filter>cores\RetroPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\xbmc\cores\RetroPlayer\RetroPlayerDialogs.h">
+      <Filter>cores\RetroPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\xbmc\cores\RetroPlayer\RetroPlayerVideo.h">
+      <Filter>cores\RetroPlayer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

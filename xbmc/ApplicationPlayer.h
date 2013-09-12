@@ -157,6 +157,7 @@ public:
   bool  IsPlayingAudio() const;
   bool  IsPlayingVideo() const;
   bool  IsPlayingRDS() const;
+  bool  IsPlayingGame() const;
   bool  IsRecording() const;
   void  LoadPage(int p, int sp, unsigned char* buffer);
   bool  OnAction(const CAction &action);
