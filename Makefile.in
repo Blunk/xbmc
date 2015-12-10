@@ -47,6 +47,7 @@ DIRECTORY_ARCHIVES=$(VideoPlayer_ARCHIVES) \
                    xbmc/games/controllers/controllers.a \
                    xbmc/games/controllers/guicontrols/controllerguicontrols.a \
                    xbmc/games/controllers/windows/controllerwindows.a \
+                   xbmc/games/games.a \
                    xbmc/guilib/guilib.a \
                    xbmc/input/input.a \
                    xbmc/interfaces/builtins/builtins.a \
@@ -150,6 +151,7 @@ INSTALL_FILTER += .*repository\.pvr-osx.*\.xbmc\.org.*
 ifeq (@USE_ANDROID@,1)
 DIRECTORY_ARCHIVES += xbmc/input/joysticks/input_joysticks.a
 DIRECTORY_ARCHIVES += xbmc/input/joysticks/generic/input_joysticks_generic.a
+DIRECTORY_ARCHIVES += xbmc/input/keyboard/generic/input_keyboard_generic.a
 DIRECTORY_ARCHIVES += xbmc/input/linux/input_linux.a
 DIRECTORY_ARCHIVES += xbmc/input/touch/input_touch.a
 DIRECTORY_ARCHIVES += xbmc/input/touch/generic/input_touch_generic.a
@@ -160,6 +162,7 @@ DIRECTORY_ARCHIVES += xbmc/windowing/X11/windowing_X11.a
 else
 DIRECTORY_ARCHIVES += xbmc/input/joysticks/input_joysticks.a
 DIRECTORY_ARCHIVES += xbmc/input/joysticks/generic/input_joysticks_generic.a
+DIRECTORY_ARCHIVES += xbmc/input/keyboard/generic/input_keyboard_generic.a
 DIRECTORY_ARCHIVES += xbmc/input/linux/input_linux.a
 DIRECTORY_ARCHIVES += xbmc/input/touch/input_touch.a
 DIRECTORY_ARCHIVES += xbmc/input/touch/generic/input_touch_generic.a
