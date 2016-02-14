@@ -19,16 +19,16 @@
  */
 
 #include "RetroPlayerVideo.h"
-#include "cores/dvdplayer/DVDClock.h" // for DVD_NOPTS_VALUE
-#include "cores/dvdplayer/DVDCodecs/DVDCodecUtils.h"
-#include "cores/dvdplayer/DVDCodecs/Video/DVDVideoCodec.h"
-#include "cores/VideoRenderers/RenderFlags.h"
-#include "cores/VideoRenderers/RenderManager.h"
+#include "cores/VideoPlayer/DVDClock.h" // for DVD_NOPTS_VALUE
+#include "cores/VideoPlayer/DVDCodecs/DVDCodecUtils.h"
+#include "cores/VideoPlayer/DVDCodecs/Video/DVDVideoCodec.h"
+//#include "cores/VideoRenderers/RenderFlags.h" // TODO
+//#include "cores/VideoRenderers/RenderManager.h" // TODO
 #include "cores/FFmpeg.h"
 #include "threads/SingleLock.h"
 #include "utils/log.h"
 
-#include "libswscale/swscale.h"
+//#include "libswscale/swscale.h" // TODO
 
 // 1 second should be a good failsafe if the event isn't triggered
 #define WAIT_TIMEOUT_MS  1000
@@ -47,7 +47,7 @@ void CRetroPlayerVideo::Cleanup(void)
 {
   if (m_swsContext)
   {
-    sws_freeContext(m_swsContext);
+    //sws_freeContext(m_swsContext); // TODO
     m_swsContext = NULL;
   }
 
@@ -101,6 +101,7 @@ void CRetroPlayerVideo::Process(void)
 
     if (IsFrameReady())
     {
+      /* TODO
       const double sleepTime = 0; // TODO: How is this calculated in DVDPlayer?
       int buffer = g_renderManager.WaitForBuffer(m_bStop, std::max(DVD_TIME_TO_MSEC(sleepTime) + 500, 50));
 
@@ -120,6 +121,7 @@ void CRetroPlayerVideo::Process(void)
           g_renderManager.FlipPage(m_bStop);
         }
       }
+      */
 
       SetFrameReady(false);
     }
@@ -130,6 +132,7 @@ void CRetroPlayerVideo::Process(void)
 
 bool CRetroPlayerVideo::Configure(unsigned int width, unsigned int height, AVPixelFormat format)
 {
+  /* TODO
   if (!g_renderManager.IsConfigured() ||
       m_format           != format    ||
       m_picture          == NULL      ||
@@ -172,12 +175,14 @@ bool CRetroPlayerVideo::Configure(unsigned int width, unsigned int height, AVPix
 
     m_format = format;
   }
+  */
 
   return true;
 }
 
 void CRetroPlayerVideo::ColorspaceConversion(const uint8_t* data, unsigned int size, unsigned int width, unsigned int height, DVDVideoPicture &output)
 {
+  /* TODO
   const unsigned int stride = size / height;
 
   if (stride != 0)
@@ -191,6 +196,7 @@ void CRetroPlayerVideo::ColorspaceConversion(const uint8_t* data, unsigned int s
 
     sws_scale(m_swsContext, src, srcStride, 0, height, dst, dstStride);
   }
+  */
 }
 
 bool CRetroPlayerVideo::IsFrameReady(void)

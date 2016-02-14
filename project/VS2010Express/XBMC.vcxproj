@@ -269,7 +269,6 @@
     <ClCompile Include="..\..\xbmc\cores\DataCacheCore.cpp" />
     <ClCompile Include="..\..\xbmc\cores\RetroPlayer\RetroPlayer.cpp" />
     <ClCompile Include="..\..\xbmc\cores\RetroPlayer\RetroPlayerAudio.cpp" />
-    <ClCompile Include="..\..\xbmc\cores\RetroPlayer\RetroPlayerDialogs.cpp" />
     <ClCompile Include="..\..\xbmc\cores\RetroPlayer\RetroPlayerVideo.cpp" />
     <ClCompile Include="..\..\xbmc\cores\VideoPlayer\DVDCodecs\Audio\DVDAudioCodecPassthrough.cpp" />
     <ClCompile Include="..\..\xbmc\cores\VideoPlayer\DVDCodecs\Overlay\contrib\cc_decoder.c">
@@ -1013,7 +1012,6 @@
     <ClInclude Include="..\..\xbmc\cores\AudioEngine\Utils\AEUtil.h" />
     <ClInclude Include="..\..\xbmc\cores\RetroPlayer\RetroPlayer.h" />
     <ClInclude Include="..\..\xbmc\cores\RetroPlayer\RetroPlayerAudio.h" />
-    <ClInclude Include="..\..\xbmc\cores\RetroPlayer\RetroPlayerDialogs.h" />
     <ClInclude Include="..\..\xbmc\cores\RetroPlayer\RetroPlayerVideo.h" />
     <ClInclude Include="..\..\xbmc\cores\VideoPlayer\DVDCodecs\Audio\DVDAudioCodecPassthrough.h" />
     <ClInclude Include="..\..\xbmc\cores\VideoPlayer\DVDCodecs\Overlay\contrib\cc_decoder.h" />

@@ -19,14 +19,11 @@
  */
 
 #include "RetroPlayer.h"
-#include "ApplicationMessenger.h"
-#include "cores/dvdplayer/DVDClock.h"
-#include "cores/RetroPlayer/RetroPlayerDialogs.h"
-#include "cores/VideoRenderers/RenderManager.h"
-#include "dialogs/GUIDialogOK.h"
-#include "games/addons/GameClient.h"
+#include "cores/VideoPlayer/DVDClock.h"
+//#include "dialogs/GUIDialogOK.h"
 #include "games/tags/GameInfoTag.h"
 #include "input/Key.h"
+#include "messaging/ApplicationMessenger.h"
 #include "settings/Settings.h"
 #include "threads/SingleLock.h"
 #include "threads/SystemClock.h"
@@ -70,47 +67,13 @@ bool CRetroPlayer::OpenFile(const CFileItem& file, const CPlayerOptions& options
 
   PrintGameInfo(file);
 
-  // Resolve the file into the appropriate game client. This will open dialogs
-  // for user input if necessary.
-  GameClientPtr gameClient;
-  if (!CRetroPlayerDialogs::GetGameClient(file, gameClient) || !gameClient)
-    return false;
-
-  // Load the DLL and retrieve system info from the game client
-  if (!gameClient->Initialize())
-  {
-    CLog::Log(LOGERROR, "RetroPlayer: Failed to init game client %s", gameClient->ID().c_str());
-    return false;
-  }
-
-  CLog::Log(LOGINFO, "RetroPlayer: Using game client %s at version %s",
-    gameClient->ID().c_str(), gameClient->Version().asString().c_str());
-
-  if (!gameClient->OpenFile(file, this))
-  {
-    CLog::Log(LOGERROR, "RetroPlayer: Error opening file");
-    std::string errorOpening = StringUtils::Format(g_localizeStrings.Get(13329).c_str(),
-                                                   file.GetURL().GetFileNameWithoutPath().c_str());
-    CGUIDialogOK::ShowAndGetInput(gameClient->Name(), errorOpening, 0, 0); // Error opening %s
-    return false;
-  }
-
-  // Validate the reported framerate
-  if (gameClient->GetFrameRate() < MINIMUM_VALID_FRAMERATE || gameClient->GetFrameRate() > MAXIMUM_VALID_FRAMERATE)
-  {
-    CLog::Log(LOGERROR, "RetroPlayer: Game client reported invalid framerate: %f", gameClient->GetFrameRate());
-    return false;
-  }
-
-  m_gameClient = gameClient;
   m_file = CFileItemPtr(new CFileItem(file));
   m_PlayerOptions = options;
 
-  // Update path if it was translated (load containing zip, or load file inside a zip)
-  m_file->SetPath(m_gameClient->GetFilePath());
-
+  /* TODO
   // Must be called from main thread
   g_renderManager.PreInit();
+  */
 
   Create();
   CLog::Log(LOGDEBUG, "RetroPlayer: File opened successfully");
@@ -157,13 +120,6 @@ bool CRetroPlayer::CloseFile(bool reopen /* = false */)
 
   m_playSpeed = PLAYSPEED_NORMAL;
 
-  // Save the game before the video cuts out
-  if (m_gameClient)
-  {
-    m_gameClient->CloseFile();
-    m_gameClient->Destroy();
-  }
-
   m_file.reset();
 
   // Set the abort request so the thread can finish up
@@ -174,11 +130,13 @@ bool CRetroPlayer::CloseFile(bool reopen /* = false */)
   m_audio.Stop();
   m_video.Stop();
 
+  /* TODO
   // TODO: g_renderManager.Init() (via OpenFile()) must be called from the main
   // thread, or locking g_graphicsContext will freeze XBMC. Does g_renderManager.UnInit()
   // also need to be called from the main thread? Is CloseFile() always called
   // from the main thread?
   g_renderManager.UnInit();
+  */
 
   CLog::Log(LOGDEBUG, "RetroPlayer: File closed");
   return true;
@@ -186,6 +144,7 @@ bool CRetroPlayer::CloseFile(bool reopen /* = false */)
 
 void CRetroPlayer::Process()
 {
+  /* TODO
   CreateAudio(m_gameClient->GetSampleRate());
   const double newFramerate = m_gameClient->GetFrameRate();
 
@@ -237,9 +196,7 @@ void CRetroPlayer::Process()
     CDVDClock::WaitAbsoluteClock(nextpts);
     nextpts += realFrameTime;
   }
-
-  // Tell application to close file
-  CApplicationMessenger::Get().MediaStop(false);
+  */
 }
 
 void CRetroPlayer::CreateAudio(double samplerate)
@@ -271,10 +228,6 @@ void CRetroPlayer::CreateAudio(double samplerate)
   {
     CLog::Log(LOGERROR, "RetroPlayer: Error, invalid sample rate %f, continuing without sound", (float)samplerate);
   }
-
-  // Record framerate correction factor back in our game client so that our
-  // savestate buffer can be resized accordingly
-  m_gameClient->SetFrameRateCorrection(m_audioSpeedFactor);
 }
 
 void CRetroPlayer::Pause()
@@ -311,11 +264,12 @@ void CRetroPlayer::Seek(bool bPlus /* = true */, bool bLargeStep /* = false */, 
     return;
 
   int seek_seconds = bLargeStep ? 10 : 1; // Seem like good values, probably depends on max rewind, needs testing
-  m_gameClient->RewindFrames((unsigned int)(seek_seconds * m_gameClient->GetFrameRate()));
+  //m_gameClient->RewindFrames((unsigned int)(seek_seconds * m_gameClient->GetFrameRate())); // TODO
 }
 
 void CRetroPlayer::SeekPercentage(float fPercent)
 {
+  /* TODO
   if (!m_gameClient || !m_gameClient->GetMaxFrames())
     return; // Rewind not supported for game.
 
@@ -332,40 +286,52 @@ void CRetroPlayer::SeekPercentage(float fPercent)
 
   if (rewind_frames > 0)
     m_gameClient->RewindFrames(rewind_frames);
+  */
 }
 
 float CRetroPlayer::GetPercentage()
 {
+  /* TODO
   if (!m_gameClient || !m_gameClient->GetMaxFrames())
     return 0.0f;
 
   return (100.0f * m_gameClient->GetAvailableFrames()) / m_gameClient->GetMaxFrames();
+  */
+  return 0.0f;
 }
 
 void CRetroPlayer::SeekTime(int64_t iTime)
 {
+  /* TODO
   if (!m_gameClient)
     return;
 
   // Avoid SIGFPE
   int64_t totalTime = GetTotalTime();
   SeekPercentage(totalTime > 0 ? 100.0f * iTime / totalTime : 0.0f);
+  */
 }
 
 int64_t CRetroPlayer::GetTime()
 {
+  /* TODO
   if (!m_gameClient || !m_gameClient->GetFrameRate())
     return 0;
 
   int current_buffer = m_gameClient->GetAvailableFrames();
   return 1000 * current_buffer / m_gameClient->GetFrameRate(); // Millisecs
+  */
+  return 0;
 }
 
 int64_t CRetroPlayer::GetTotalTime()
 {
+  /* TODO
   if (!m_gameClient || !m_gameClient->GetFrameRate())
     return 0;
 
   int max_buffer = m_gameClient->GetMaxFrames();
   return 1000 * max_buffer / m_gameClient->GetFrameRate(); // Millisecs
+  */
+  return 0;
 }

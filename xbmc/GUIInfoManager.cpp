@@ -4703,8 +4703,8 @@ void CGUIInfoManager::SetCurrentItemJob(const CFileItemPtr item)
 
   if (item->IsAudio())
     SetCurrentSong(*item);
-  else if (item.IsGame())
-    SetCurrentGame(item);
+  else if (item->IsGame())
+    SetCurrentGame(*item);
   else
     SetCurrentMovie(*item);
 
@@ -4824,7 +4824,6 @@ void CGUIInfoManager::SetCurrentMovie(CFileItem &item)
   m_currentMovieThumb = item.GetArt("thumb");
 }
 
-string CGUIInfoManager::GetSystemHeatInfo(int info)
 void CGUIInfoManager::SetCurrentGame(CFileItem &item)
 {
   CLog::Log(LOGDEBUG,"CGUIInfoManager::SetCurrentGame(%s)", item.GetPath().c_str());

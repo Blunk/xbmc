@@ -94,17 +94,22 @@ public:
     {
       pPlayer = new PAPlayer(callback);
     }
+    else if (m_type.compare("game") == 0)
+    {
+      pPlayer = new CRetroPlayer(callback);
+    }
     else if (m_type.compare("external") == 0)
     {
       pPlayer = new CExternalPlayer(callback);
     }
 
-      case EPC_RETROPLAYER: pPlayer = new CRetroPlayer(callback); break;
 #if defined(HAS_UPNP)
+    /* TODO
     else if (m_type.compare("remote") == 0)
     {
       pPlayer = new UPNP::CUPnPPlayer(callback, m_id.c_str());
     }
+    */
 #endif
     else
       return nullptr;

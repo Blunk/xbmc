@@ -49,7 +49,12 @@ bool CRetroPlayerAudio::Start(AEDataFormat format, double samplerate)
 
     CLog::Log(LOGINFO, "RetroPlayerAudio: Creating audio stream, sample rate hint = %u", newsamplerate);
     static enum AEChannel map[3] = { AE_CH_FL, AE_CH_FR, AE_CH_NULL };
-    m_pAudioStream = CAEFactory::MakeStream(format, newsamplerate, newsamplerate, CAEChannelInfo(map), AESTREAM_AUTOSTART);
+
+    // TODO
+    AEAudioFormat format;
+    format.m_channelLayout = CAEChannelInfo(map);
+    format.m_sampleRate = newsamplerate;
+    m_pAudioStream = CAEFactory::MakeStream(format);
 
     if (!m_pAudioStream)
     {
@@ -60,10 +65,6 @@ bool CRetroPlayerAudio::Start(AEDataFormat format, double samplerate)
     {
       // For real-time (ish) audio, we need to avoid resampling
       CLog::Log(LOGERROR, "RetroPlayerAudio: sink sample rate (%u) doesn't match", m_pAudioStream->GetSampleRate());
-
-      // Temporary: Notify the user via GUI box
-      std::string msg = StringUtils::Format("Sample rate not supported by audio device: %uHz", m_pAudioStream->GetSampleRate());
-      CGUIDialogOK::ShowAndGetInput(257, msg.c_str(), "Continuing without sound", 0);
 
       Cleanup();
 

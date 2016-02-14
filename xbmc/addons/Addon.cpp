@@ -404,7 +404,7 @@ const std::string CAddon::LibPath() const
   if (m_props.libname.empty())
     return "";
 
-  std::string strLibPath = URIUtils::AddFileToFolder(m_props.path, m_strLibName);
+  std::string strLibPath = URIUtils::AddFileToFolder(m_props.path, m_props.libname);
 
   // Check if add-on library has been installed to the binaries path instead
   std::string strSharePath = CSpecialProtocol::TranslatePath("special://xbmc/");

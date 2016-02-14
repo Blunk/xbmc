@@ -3424,9 +3424,6 @@
     <ClCompile Include="..\..\xbmc\cores\RetroPlayer\RetroPlayerAudio.cpp">
       <Filter>cores\RetroPlayer</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\xbmc\cores\RetroPlayer\RetroPlayerDialogs.cpp">
-      <Filter>cores\RetroPlayer</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\xbmc\cores\RetroPlayer\RetroPlayerVideo.cpp">
       <Filter>cores\RetroPlayer</Filter>
     </ClCompile>
@@ -6606,9 +6603,6 @@
       <Filter>cores\RetroPlayer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\xbmc\cores\RetroPlayer\RetroPlayerAudio.h">
-      <Filter>cores\RetroPlayer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\xbmc\cores\RetroPlayer\RetroPlayerDialogs.h">
       <Filter>cores\RetroPlayer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\xbmc\cores\RetroPlayer\RetroPlayerVideo.h">
